@@ -8,10 +8,10 @@ import java.util.List;
 
 /**
  * Project: jp_morgan
- * For:
+ * For: Service for count of outgoing trades on market. It's package private because is used only for {@link MarketService}
  * Created by damekjan on 24/07/2017.
  */
-public class OutgoingService {
+class OutgoingService {
 
     /**
      * list of all outgoing trades
@@ -21,7 +21,7 @@ public class OutgoingService {
     /**
      * constructor
      */
-    public OutgoingService() {
+    OutgoingService() {
         settledOutgoings = new ArrayList<>();
     }
 
@@ -30,7 +30,7 @@ public class OutgoingService {
      *
      * @return List of {@link OutgoingService}
      */
-    public List<SettledOutgoing> getSettledOutgoings() {
+    List<SettledOutgoing> getSettledOutgoings() {
         return settledOutgoings;
     }
 
@@ -38,9 +38,9 @@ public class OutgoingService {
      * add to sum of outgoing by trade date
      *
      * @param tradeDate date of trade
-     * @param amount    calculed amount in USD of trade
+     * @param amount    calculated amount in USD of trade
      */
-    public void addAmount(Date tradeDate, double amount) {
+    void addAmount(Date tradeDate, double amount) {
         SettledOutgoing outgoing = getOutgoing(tradeDate);
         outgoing.setOutcome(outgoing.getOutcome() + amount);
     }

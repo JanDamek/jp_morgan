@@ -7,10 +7,10 @@ import java.util.List;
 
 /**
  * Project: jp_morgan
- * For: service for cal incoming and outgoing trade for entity
+ * For: service for cal incoming and outgoing trade for entity. It's package private because it's used only on {@link MarketService}
  * Created by damekjan on 24/07/2017.
  */
-public class RankingService {
+class RankingService {
 
     /**
      * list of rankings by entity
@@ -20,7 +20,7 @@ public class RankingService {
     /**
      * constructor
      */
-    public RankingService() {
+    RankingService() {
         rankings = new ArrayList<>();
 
     }
@@ -30,25 +30,25 @@ public class RankingService {
      *
      * @return list of {@link Ranking}
      */
-    public List<Ranking> getRankings() {
+    List<Ranking> getRankings() {
         return rankings;
     }
 
     /**
-     * count of sum of outcoming trades on entity name
+     * count of sum of outgoing trades on entity name
      *
      * @param entity String
      * @param amount Double
      */
-    public void addOutcome(String entity, double amount) {
+    void addOutcome(String entity, double amount) {
         final Ranking ranking = getRanking(entity);
         ranking.setOutgoing(ranking.getOutgoing() + amount);
     }
 
     /**
-     * get one {@link Ranking} by given entyity name. If not exist is created an stored on list
+     * get one {@link Ranking} by given entity name. If not exist is created an stored on list
      *
-     * @param entity Strign name of entity
+     * @param entity String name of entity
      * @return object of {@link Ranking}
      */
     private Ranking getRanking(String entity) {
@@ -77,7 +77,7 @@ public class RankingService {
      * @param entity String
      * @param amount Double
      */
-    public void addIncoming(String entity, double amount) {
+    void addIncoming(String entity, double amount) {
         final Ranking ranking = getRanking(entity);
         ranking.setIncoming(ranking.getIncoming() + amount);
     }

@@ -22,7 +22,7 @@ public class SettledIncoming {
     private double incoming;
 
     /**
-     * construcotr with Date of settled
+     * constructor with Date of settled
      *
      * @param tradeDate Date
      */

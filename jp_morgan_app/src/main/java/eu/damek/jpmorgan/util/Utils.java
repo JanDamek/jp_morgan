@@ -13,12 +13,17 @@ import java.util.Date;
  */
 public class Utils {
 
+    private Utils() {
+        // only for hide implicit constructor
+    }
+
     /**
-     * output on onsole
+     * output on console
      *
      * @param string to write
      */
     public static void printLn(String string) {
+        //used System.out for work also on IDE. The System.console() if reachable on on terminal.
         System.out.println(string);
     }
 
@@ -27,7 +32,7 @@ public class Utils {
      *
      * @return char
      */
-    public static char readKeybordChar() {
+    public static char readKeyboardChar() {
         try {
             return (char) new InputStreamReader(System.in).read();
         } catch (IOException e) {
@@ -41,6 +46,7 @@ public class Utils {
      * @param s String to print
      */
     public static void print(String s) {
+        //used System.out for work also on IDE. The System.console() if reachable on on terminal.
         System.out.print(s);
     }
 
@@ -55,17 +61,14 @@ public class Utils {
     }
 
     /**
-     * read from console String value
+     * read from console Date value
      *
-     * @return String
+     * @return Date
      */
-    public static String readLine() {
-        Console console = System.console();
-        if (console == null) {
-            System.out.println("Unable to fetch console");
-            return "";
-        }
-        return console.readLine();
+    public static Date readLineDate() {
+        String line = readLine();
+        final String[] split = line.split("\\.");
+        return date(Integer.valueOf(split[2]), Integer.valueOf(split[1]), Integer.valueOf(split[0]));
     }
 
     /**
@@ -79,14 +82,18 @@ public class Utils {
     }
 
     /**
-     * raed from console Date value
+     * read from console String value
      *
-     * @return Date
+     * @return String
      */
-    public static Date readLineDate() {
-        String line = readLine();
-        final String[] split = line.split("\\.");
-        return date(Integer.valueOf(split[2]), Integer.valueOf(split[1]), Integer.valueOf(split[0]));
+    public static String readLine() {
+        Console console = System.console();
+        if (console == null) {
+            //used System.out for work also on IDE. The System.console() if reachable on on terminal.
+            System.out.println("Unable to fetch console");
+            return "";
+        }
+        return console.readLine();
     }
 
     /**
@@ -99,6 +106,7 @@ public class Utils {
      */
     public static Date date(int day, int month, int year) {
         Calendar c = Calendar.getInstance();
+        // on callendar month start on 0, for this is month - 1
         c.set(year, month - 1, day, 0, 0, 0);
         return c.getTime();
     }

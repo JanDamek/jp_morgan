@@ -21,9 +21,9 @@ public class MarketService {
      */
     private RankingService rankingService;
     /**
-     * store on {@link IncomService}
+     * store on {@link IncomingService}
      */
-    private IncomService incomService;
+    private IncomingService incomingService;
     /**
      * store of {@link OutgoingService}
      */
@@ -34,7 +34,7 @@ public class MarketService {
      */
     public MarketService() {
         rankingService = new RankingService();
-        incomService = new IncomService();
+        incomingService = new IncomingService();
         outgoingService = new OutgoingService();
     }
 
@@ -50,7 +50,7 @@ public class MarketService {
             outgoingService.addAmount(tradeDate, amount);
             rankingService.addOutcome(instruction.getEntity(), amount);
         } else {
-            incomService.addAmount(tradeDate, amount);
+            incomingService.addAmount(tradeDate, amount);
             rankingService.addIncoming(instruction.getEntity(), amount);
         }
     }
@@ -103,7 +103,7 @@ public class MarketService {
      * @return list of {@link SettledIncoming}
      */
     public List<SettledIncoming> getSettledIncoming() {
-        return incomService.getSettledIncomings();
+        return incomingService.getSettledIncoming();
     }
 
     /**

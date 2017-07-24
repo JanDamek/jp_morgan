@@ -18,7 +18,7 @@ public class Instruction {
      */
     private final char buySell;
     /**
-     * agreed forex exchange
+     * agreedFx exchange
      */
     private final Double agreedFx;
     /**
@@ -43,7 +43,7 @@ public class Instruction {
     private final Double pricePerUnit;
 
     /**
-     * Main contructor of POJO
+     * Main constructor
      *
      * @param entity          String
      * @param buySell         Char
@@ -51,7 +51,7 @@ public class Instruction {
      * @param currency        String
      * @param instructionDate Date
      * @param settlementDate  Date
-     * @param units           Integre
+     * @param units           Integer
      * @param pricePerUnit    Double
      */
     Instruction(String entity, char buySell, Double agreedFx, String currency, Date instructionDate,
@@ -117,7 +117,7 @@ public class Instruction {
     }
 
     /**
-     * getter for instruction date
+     * getter for instruction date. For now it's not used but in future can be
      *
      * @return Date
      */

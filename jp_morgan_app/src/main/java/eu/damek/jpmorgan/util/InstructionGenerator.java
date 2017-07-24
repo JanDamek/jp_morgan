@@ -14,11 +14,11 @@ import java.util.List;
 public class InstructionGenerator {
 
     /**
-     * Instruction generatro for test application
+     * Instruction generator for test application
      *
      * @return list of {@link Instruction}
      */
-    public List<Instruction> getInstrunctions() {
+    public List<Instruction> getInstructions() {
         List<Instruction> instructions = new ArrayList<>();
         instructions.add(new InstructionBuilder()
                 .setEntity("foo")

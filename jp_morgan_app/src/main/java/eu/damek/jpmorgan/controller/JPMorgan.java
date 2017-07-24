@@ -24,7 +24,7 @@ public class JPMorgan {
     private boolean runApplication;
 
     /**
-     * construcotr for main class
+     * constructor for main class
      */
     public JPMorgan() {
         marketService = new MarketService();
@@ -33,14 +33,14 @@ public class JPMorgan {
     }
 
     /**
-     * initialization of all data for run appliaction
+     * initialization of all data for run application
      */
     private void initData() {
         runApplication = true;
     }
 
     /**
-     * run of appliation, main loop
+     * run of application, main loop
      */
     public void run() {
         processMessagesOfInstructions();
@@ -49,24 +49,24 @@ public class JPMorgan {
         Utils.printLn("");
         do {
             printChoiceInfo();
-            char choice = Utils.readKeybordChar();
+            char choice = Utils.readKeyboardChar();
             processUserChoice(choice);
         } while (runApplication);
     }
 
     /**
-     * make all instructiones to sell or buy on market
+     * make all instruction's to sell or buy on market
      */
     private void processMessagesOfInstructions() {
-        for (Instruction instruction : new InstructionGenerator().getInstrunctions()) {
+        for (Instruction instruction : new InstructionGenerator().getInstructions()) {
             marketService.makeTrade(instruction);
         }
     }
 
     /**
-     * chois the next step on appliation
+     * choice the next step on application
      *
-     * @param choice Chat inputet by terminal
+     * @param choice Char input by terminal
      */
     private void processUserChoice(char choice) {
         switch (choice) {
@@ -85,7 +85,7 @@ public class JPMorgan {
     }
 
     /**
-     * create new instruction inputed from terminal and run it on {@link MarketService}
+     * create new instruction inputted from terminal and run it on {@link MarketService}
      */
     private void readUserInstruction() {
         try {
@@ -158,7 +158,7 @@ public class JPMorgan {
         }
         Utils.printLn("");
         Utils.printLn("Ranking of entities.");
-        Utils.printLn("Entity          incoming      outcoming   ranking");
+        Utils.printLn("Entity          incoming       outgoing   ranking");
         for (Ranking item : marketService.getEntitiesRanking()) {
             Utils.printLn(String.format("%-10s    %10.2f     %10.2f     %1d", item.getEntity(), item.getIncoming(), item
                     .getOutgoing(), item.ranking()));

@@ -23,7 +23,7 @@ public class Ranking {
     private double outgoing;
 
     /**
-     * constructor for {@link Ranking} with enity name
+     * constructor for {@link Ranking} with entity name
      *
      * @param entity String
      */
@@ -78,7 +78,7 @@ public class Ranking {
     }
 
     /**
-     * calc of rang for entity. If outgoing is great like incomint then return 1 else 0
+     * calc of rang for entity. If outgoing is great like incoming then return 1 else 0
      *
      * @return Integer
      */
