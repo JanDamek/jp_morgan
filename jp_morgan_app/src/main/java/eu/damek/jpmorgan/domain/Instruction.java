@@ -9,17 +9,53 @@ import java.util.Date;
  */
 public class Instruction {
 
+    /**
+     * name of entity
+     */
     private final String entity;
+    /**
+     * char for Sell or Buy
+     */
     private final char buySell;
+    /**
+     * agreed forex exchange
+     */
     private final Double agreedFx;
+    /**
+     * currency for make
+     */
     private final String currency;
+    /**
+     * date of instruction
+     */
     private final Date instructionDate;
+    /**
+     * date for settlement
+     */
     private final Date settlementDate;
+    /**
+     * count of unit
+     */
     private final Integer units;
-    private final Double priceOerUnit;
+    /**
+     * price per unit
+     */
+    private final Double pricePerUnit;
 
-    public Instruction(String entity, char buySell, Double agreedFx, String currency, Date instructionDate,
-                       Date settlementDate, Integer units, Double priceOerUnit) {
+    /**
+     * Main contructor of POJO
+     *
+     * @param entity          String
+     * @param buySell         Char
+     * @param agreedFx        Double
+     * @param currency        String
+     * @param instructionDate Date
+     * @param settlementDate  Date
+     * @param units           Integre
+     * @param pricePerUnit    Double
+     */
+    Instruction(String entity, char buySell, Double agreedFx, String currency, Date instructionDate,
+                Date settlementDate, Integer units, Double pricePerUnit) {
         this.entity = entity;
         this.buySell = buySell;
         this.agreedFx = agreedFx;
@@ -27,7 +63,7 @@ public class Instruction {
         this.instructionDate = instructionDate;
         this.settlementDate = settlementDate;
         this.units = units;
-        this.priceOerUnit = priceOerUnit;
+        this.pricePerUnit = pricePerUnit;
     }
 
     @Override
@@ -40,39 +76,79 @@ public class Instruction {
                 .append("instructionDate", instructionDate)
                 .append("settlementDate", settlementDate)
                 .append("units", units)
-                .append("priceOerUnit", priceOerUnit)
+                .append("pricePerUnit", pricePerUnit)
                 .toString();
     }
 
+    /**
+     * getter for entity name
+     *
+     * @return String
+     */
     public String getEntity() {
         return entity;
     }
 
+    /**
+     * getter for Sell or Buy
+     *
+     * @return Char
+     */
     public char getBuySell() {
         return buySell;
     }
 
+    /**
+     * getter for agree Fx
+     *
+     * @return Double
+     */
     public Double getAgreedFx() {
         return agreedFx;
     }
 
+    /**
+     * getter for currency
+     *
+     * @return String
+     */
     public String getCurrency() {
         return currency;
     }
 
+    /**
+     * getter for instruction date
+     *
+     * @return Date
+     */
     public Date getInstructionDate() {
         return instructionDate;
     }
 
+    /**
+     * getter for Settlement date
+     *
+     * @return Date
+     */
     public Date getSettlementDate() {
         return settlementDate;
     }
 
+    /**
+     * getter for count of unit
+     *
+     * @return Integer
+     */
     public Integer getUnits() {
         return units;
     }
 
-    public Double getPriceOerUnit() {
-        return priceOerUnit;
+    /**
+     * getter for price of unit
+     *
+     * @return Double
+     */
+    public Double getPricePerUnit() {
+        return pricePerUnit;
     }
 }

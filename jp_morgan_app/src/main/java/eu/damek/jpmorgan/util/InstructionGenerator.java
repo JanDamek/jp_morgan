@@ -13,6 +13,11 @@ import java.util.List;
  */
 public class InstructionGenerator {
 
+    /**
+     * Instruction generatro for test application
+     *
+     * @return list of {@link Instruction}
+     */
     public List<Instruction> getInstrunctions() {
         List<Instruction> instructions = new ArrayList<>();
         instructions.add(new InstructionBuilder()
@@ -23,7 +28,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(1, 1, 2016))
                 .setSettlementDate(Utils.date(2, 1, 2016))
                 .setUnits(200)
-                .setPriceOerUnit(100.25D)
+                .setPricePerUnit(100.25D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("foo")
@@ -33,7 +38,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(1, 1, 2016))
                 .setSettlementDate(Utils.date(5, 1, 2016))
                 .setUnits(200)
-                .setPriceOerUnit(100.25D)
+                .setPricePerUnit(100.25D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("foo")
@@ -43,7 +48,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(1, 1, 2016))
                 .setSettlementDate(Utils.date(6, 1, 2016))
                 .setUnits(200)
-                .setPriceOerUnit(100.25D)
+                .setPricePerUnit(100.25D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("foo")
@@ -53,7 +58,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(1, 1, 2016))
                 .setSettlementDate(Utils.date(7, 1, 2016))
                 .setUnits(200)
-                .setPriceOerUnit(100.25D)
+                .setPricePerUnit(100.25D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("foo")
@@ -63,7 +68,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(1, 1, 2016))
                 .setSettlementDate(Utils.date(8, 1, 2016))
                 .setUnits(200)
-                .setPriceOerUnit(100.25D)
+                .setPricePerUnit(100.25D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("foo")
@@ -73,7 +78,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(1, 1, 2016))
                 .setSettlementDate(Utils.date(9, 1, 2016))
                 .setUnits(200)
-                .setPriceOerUnit(100.25D)
+                .setPricePerUnit(100.25D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("foo")
@@ -83,7 +88,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(1, 1, 2016))
                 .setSettlementDate(Utils.date(10, 1, 2016))
                 .setUnits(200)
-                .setPriceOerUnit(100.25D)
+                .setPricePerUnit(100.25D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("foo")
@@ -93,7 +98,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(1, 1, 2016))
                 .setSettlementDate(Utils.date(11, 1, 2016))
                 .setUnits(200)
-                .setPriceOerUnit(100.25D)
+                .setPricePerUnit(100.25D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("foo")
@@ -103,7 +108,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(1, 1, 2016))
                 .setSettlementDate(Utils.date(10, 1, 2016))
                 .setUnits(200)
-                .setPriceOerUnit(100.25D)
+                .setPricePerUnit(100.25D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("bar")
@@ -113,7 +118,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(5, 1, 2016))
                 .setSettlementDate(Utils.date(7, 1, 2016))
                 .setUnits(450)
-                .setPriceOerUnit(150.5D)
+                .setPricePerUnit(150.5D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("bar")
@@ -123,7 +128,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(5, 1, 2016))
                 .setSettlementDate(Utils.date(12, 1, 2016))
                 .setUnits(450)
-                .setPriceOerUnit(150.5D)
+                .setPricePerUnit(150.5D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("bar")
@@ -133,7 +138,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(5, 1, 2016))
                 .setSettlementDate(Utils.date(11, 1, 2016))
                 .setUnits(450)
-                .setPriceOerUnit(150.5D)
+                .setPricePerUnit(150.5D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("bar")
@@ -143,7 +148,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(5, 1, 2016))
                 .setSettlementDate(Utils.date(10, 1, 2016))
                 .setUnits(450)
-                .setPriceOerUnit(150.5D)
+                .setPricePerUnit(150.5D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("bar")
@@ -153,7 +158,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(5, 1, 2016))
                 .setSettlementDate(Utils.date(9, 1, 2016))
                 .setUnits(450)
-                .setPriceOerUnit(150.5D)
+                .setPricePerUnit(150.5D)
                 .createInstruction());
         instructions.add(new InstructionBuilder()
                 .setEntity("bar")
@@ -163,7 +168,7 @@ public class InstructionGenerator {
                 .setInstructionDate(Utils.date(5, 1, 2016))
                 .setSettlementDate(Utils.date(8, 1, 2016))
                 .setUnits(450)
-                .setPriceOerUnit(150.5D)
+                .setPricePerUnit(150.5D)
                 .createInstruction());
         return instructions;
     }

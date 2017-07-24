@@ -11,27 +11,54 @@ import java.util.Date;
  */
 public class SettledOutgoing {
 
+    /**
+     * settled date for outgoing
+     */
     private final Date date;
 
+    /**
+     * sum of outgoing on date
+     */
     private double outcome;
 
+    /**
+     * constructor with date of trade
+     *
+     * @param tradeDate Date
+     */
     public SettledOutgoing(Date tradeDate) {
         this.date = tradeDate;
     }
 
+    /**
+     * getter of outgoing
+     *
+     * @return Double
+     */
     public double getOutcome() {
         return outcome;
     }
 
+    /**
+     * setter of outgoing
+     *
+     * @param outcome Double
+     */
     public void setOutcome(double outcome) {
         this.outcome = outcome;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return getDate() != null ? getDate().hashCode() : 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -46,15 +73,23 @@ public class SettledOutgoing {
         return getDate() != null ? getDate().equals(that.getDate()) : that.getDate() == null;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("date", date)
                 .append("outcome", outcome)
                 .toString();
+    }
+
+    /**
+     * getter of date
+     *
+     * @return Date
+     */
+    public Date getDate() {
+        return date;
     }
 }

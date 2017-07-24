@@ -9,6 +9,11 @@ import eu.damek.jpmorgan.controller.JPMorgan;
  */
 public class StartClass {
 
+    /**
+     * start point of appliaction to run on console
+     *
+     * @param args Argument given by command line
+     */
     public static void main(String[] args) {
         JPMorgan jpMorgan = new JPMorgan();
         jpMorgan.run();

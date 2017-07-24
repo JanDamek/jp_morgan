@@ -1,13 +1,11 @@
 package eu.damek.jpmorgan.controller;
 
 import eu.damek.jpmorgan.domain.*;
+import eu.damek.jpmorgan.service.MarketService;
 import eu.damek.jpmorgan.util.InstructionGenerator;
 import eu.damek.jpmorgan.util.Utils;
-import eu.damek.jpmorgan.service.MarketService;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Project: jp_morgan
@@ -16,27 +14,34 @@ import java.util.List;
  */
 public class JPMorgan {
 
+    /**
+     * point for {@link MarketService} tu run mail bossiness logic
+     */
     private MarketService marketService;
+    /**
+     * state of quit or run application
+     */
     private boolean runApplication;
 
-    private List<Instruction> instructions;
-
+    /**
+     * construcotr for main class
+     */
     public JPMorgan() {
         marketService = new MarketService();
         initData();
         Utils.printLn("JP Morgan Test");
     }
 
+    /**
+     * initialization of all data for run appliaction
+     */
     private void initData() {
         runApplication = true;
-        instructions = new ArrayList<>();
-        readAllInstructions();
     }
 
-    private void readAllInstructions() {
-        instructions = new InstructionGenerator().getInstrunctions();
-    }
-
+    /**
+     * run of appliation, main loop
+     */
     public void run() {
         processMessagesOfInstructions();
         makeDailyReport();
@@ -49,12 +54,20 @@ public class JPMorgan {
         } while (runApplication);
     }
 
+    /**
+     * make all instructiones to sell or buy on market
+     */
     private void processMessagesOfInstructions() {
-        for (Instruction instruction : instructions) {
+        for (Instruction instruction : new InstructionGenerator().getInstrunctions()) {
             marketService.makeTrade(instruction);
         }
     }
 
+    /**
+     * chois the next step on appliation
+     *
+     * @param choice Chat inputet by terminal
+     */
     private void processUserChoice(char choice) {
         switch (choice) {
             case '0':
@@ -71,6 +84,9 @@ public class JPMorgan {
         }
     }
 
+    /**
+     * create new instruction inputed from terminal and run it on {@link MarketService}
+     */
     private void readUserInstruction() {
         try {
             Utils.print("Entity:");
@@ -112,17 +128,20 @@ public class JPMorgan {
                     .setInstructionDate(instructionDate)
                     .setSettlementDate(settlementDate)
                     .setUnits(units)
-                    .setPriceOerUnit(pricePerUnit)
+                    .setPricePerUnit(pricePerUnit)
                     .createInstruction());
         } catch (Exception e) {
             Utils.printLn("Error on input: " + e.getMessage());
         }
     }
 
+    /**
+     * print on console the report
+     */
     private void makeDailyReport() {
         Utils.printLn("USD settled incoming.");
         Utils.printLn("Date             incoming amount");
-        for (SettledIncoming item : marketService.settledIncoming()) {
+        for (SettledIncoming item : marketService.getSettledIncoming()) {
             Utils.printLn(String.format("%3ta %4tY.%2tm.%2td     %10.2f", item.getDate(), item.getDate(), item
                             .getDate(),
                     item.getDate(),
@@ -131,7 +150,7 @@ public class JPMorgan {
         Utils.printLn("");
         Utils.printLn("USD settled outgoing.");
         Utils.printLn("Date             incoming amount");
-        for (SettledOutgoing item : marketService.settledOutgoing()) {
+        for (SettledOutgoing item : marketService.getSettledOutgoing()) {
             Utils.printLn(String.format("%3ta %2tY.%2tm.%2td     %10.2f", item.getDate(), item.getDate(), item
                             .getDate(),
                     item.getDate(),
@@ -140,7 +159,7 @@ public class JPMorgan {
         Utils.printLn("");
         Utils.printLn("Ranking of entities.");
         Utils.printLn("Entity          incoming      outcoming   ranking");
-        for (Ranking item : marketService.entitiesRanking()) {
+        for (Ranking item : marketService.getEntitiesRanking()) {
             Utils.printLn(String.format("%-10s    %10.2f     %10.2f     %1d", item.getEntity(), item.getIncoming(), item
                     .getOutgoing(), item.ranking()));
         }
@@ -149,6 +168,9 @@ public class JPMorgan {
         Utils.printLn("");
     }
 
+    /**
+     * print the menu for choice
+     */
     private void printChoiceInfo() {
         Utils.printLn("1 - input instruction");
         Utils.printLn("2 - print daily report");

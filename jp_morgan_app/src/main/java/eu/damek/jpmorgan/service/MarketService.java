@@ -16,16 +16,33 @@ import java.util.List;
  */
 public class MarketService {
 
+    /**
+     * store on {@link RankingService}
+     */
     private RankingService rankingService;
+    /**
+     * store on {@link IncomService}
+     */
     private IncomService incomService;
+    /**
+     * store of {@link OutgoingService}
+     */
     private OutgoingService outgoingService;
 
+    /**
+     * constructor
+     */
     public MarketService() {
         rankingService = new RankingService();
         incomService = new IncomService();
         outgoingService = new OutgoingService();
     }
 
+    /**
+     * make the trade based on {@link Instruction}
+     *
+     * @param instruction input object to market
+     */
     public void makeTrade(Instruction instruction) {
         final Date tradeDate = getNearestWorkingDate(instruction.getSettlementDate(), instruction.getCurrency());
         double amount = calcAmountUsd(instruction);
@@ -38,10 +55,23 @@ public class MarketService {
         }
     }
 
+    /**
+     * calc the amount of USD of trade
+     *
+     * @param instruction inpuit {@link Instruction}
+     * @return Double as result of calc
+     */
     private double calcAmountUsd(Instruction instruction) {
-        return instruction.getPriceOerUnit() * instruction.getUnits() * instruction.getAgreedFx();
+        return instruction.getPricePerUnit() * instruction.getUnits() * instruction.getAgreedFx();
     }
 
+    /**
+     * get the nearest working day of settlement date. The date is based on currency.
+     *
+     * @param settlementDate date of settlement
+     * @param currency       on with currenct is the trade
+     * @return date of working date
+     */
     private Date getNearestWorkingDate(Date settlementDate, String currency) {
         final Calendar calendar = Calendar.getInstance();
         final boolean currencyShift = currencyShift(currency);
@@ -56,20 +86,41 @@ public class MarketService {
         return calendar.getTime();
     }
 
+    /**
+     * test if the market based by currency is shifted
+     *
+     * @param currency String of currency
+     * @return boolean
+     */
     private boolean currencyShift(String currency) {
         return currency.equalsIgnoreCase("AED") ||
                currency.equalsIgnoreCase("SAR");
     }
 
-    public List<SettledIncoming> settledIncoming() {
+    /**
+     * getter for {@link SettledIncoming}
+     *
+     * @return list of {@link SettledIncoming}
+     */
+    public List<SettledIncoming> getSettledIncoming() {
         return incomService.getSettledIncomings();
     }
 
-    public List<Ranking> entitiesRanking() {
+    /**
+     * getter of ranging by entity
+     *
+     * @return list of {@link Ranking}
+     */
+    public List<Ranking> getEntitiesRanking() {
         return rankingService.getRankings();
     }
 
-    public List<SettledOutgoing> settledOutgoing() {
+    /**
+     * getter of {@link SettledOutgoing}
+     *
+     * @return list of {@link SettledOutgoing}
+     */
+    public List<SettledOutgoing> getSettledOutgoing() {
         return outgoingService.getSettledOutgoings();
     }
 }
