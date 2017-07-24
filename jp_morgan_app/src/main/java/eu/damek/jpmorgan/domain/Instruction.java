@@ -31,57 +31,6 @@ public class Instruction {
     }
 
     @Override
-    public int hashCode() {
-        int result = getEntity() != null ? getEntity().hashCode() : 0;
-        result = 31 * result + (int) getBuySell();
-        result = 31 * result + (getAgreedFx() != null ? getAgreedFx().hashCode() : 0);
-        result = 31 * result + (getCurrency() != null ? getCurrency().hashCode() : 0);
-        result = 31 * result + (getInstructionDate() != null ? getInstructionDate().hashCode() : 0);
-        result = 31 * result + (getSettlementDate() != null ? getSettlementDate().hashCode() : 0);
-        result = 31 * result + (getUnits() != null ? getUnits().hashCode() : 0);
-        result = 31 * result + (getPriceOerUnit() != null ? getPriceOerUnit().hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Instruction)) {
-            return false;
-        }
-
-        Instruction that = (Instruction) o;
-
-        if (getBuySell() != that.getBuySell()) {
-            return false;
-        }
-        if (getEntity() != null ? !getEntity().equals(that.getEntity()) : that.getEntity() != null) {
-            return false;
-        }
-        if (getAgreedFx() != null ? !getAgreedFx().equals(that.getAgreedFx()) : that.getAgreedFx() != null) {
-            return false;
-        }
-        if (getCurrency() != null ? !getCurrency().equals(that.getCurrency()) : that.getCurrency() != null) {
-            return false;
-        }
-        if (getInstructionDate() != null ? !getInstructionDate().equals(that.getInstructionDate()) :
-                that.getInstructionDate() != null) {
-            return false;
-        }
-        if (getSettlementDate() != null ? !getSettlementDate().equals(that.getSettlementDate()) :
-                that.getSettlementDate() != null) {
-            return false;
-        }
-        if (getUnits() != null ? !getUnits().equals(that.getUnits()) : that.getUnits() != null) {
-            return false;
-        }
-        return getPriceOerUnit() != null ? getPriceOerUnit().equals(that.getPriceOerUnit()) :
-                that.getPriceOerUnit() == null;
-    }
-
-    @Override
     public String toString() {
         return new org.apache.commons.lang3.builder.ToStringBuilder(this)
                 .append("entity", entity)

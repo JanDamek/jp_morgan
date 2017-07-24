@@ -1,6 +1,7 @@
 package eu.damek.jpmorgan.util;
 
 import eu.damek.jpmorgan.domain.Instruction;
+import eu.damek.jpmorgan.domain.InstructionBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,141 +15,156 @@ public class InstructionGenerator {
 
     public List<Instruction> getInstrunctions() {
         List<Instruction> instructions = new ArrayList<>();
-        instructions.add(new Instruction(
-                "foo",
-                'B',
-                0.5D,
-                "SGP",
-                Utils.date(1, 1, 2016),
-                Utils.date(2, 1, 2016),
-                200,
-                100.25D));
-        instructions.add(new Instruction(
-                "foo",
-                'B',
-                0.5D,
-                "SGP",
-                Utils.date(1, 1, 2016),
-                Utils.date(5, 1, 2016),
-                200,
-                100.25D));
-        instructions.add(new Instruction(
-                "foo",
-                'S',
-                0.5D,
-                "SGP",
-                Utils.date(1, 1, 2016),
-                Utils.date(6, 1, 2016),
-                200,
-                100.25D));
-        instructions.add(new Instruction(
-                "foo",
-                'S',
-                0.5D,
-                "SGP",
-                Utils.date(1, 1, 2016),
-                Utils.date(7, 1, 2016),
-                200,
-                100.25D));
-        instructions.add(new Instruction(
-                "foo",
-                'B',
-                0.5D,
-                "SGP",
-                Utils.date(1, 1, 2016),
-                Utils.date(8, 1, 2016),
-                200,
-                100.25D));
-        instructions.add(new Instruction(
-                "foo",
-                'S',
-                0.5D,
-                "SGP",
-                Utils.date(1, 1, 2016),
-                Utils.date(9, 1, 2016),
-                200,
-                100.25D));
-        instructions.add(new Instruction(
-                "foo",
-                'B',
-                0.5D,
-                "SGP",
-                Utils.date(1, 1, 2016),
-                Utils.date(10, 1, 2016),
-                200,
-                100.25D));
-        instructions.add(new Instruction(
-                "foo",
-                'B',
-                0.5D,
-                "SGP",
-                Utils.date(1, 1, 2016),
-                Utils.date(11, 1, 2016),
-                200,
-                100.25D));
-        instructions.add(new Instruction(
-                "foo",
-                'S',
-                0.5D,
-                "SGP",
-                Utils.date(1, 1, 2016),
-                Utils.date(10, 1, 2016),
-                200,
-                100.25D));
-        instructions.add(new Instruction(
-                "bar",
-                'S',
-                0.22D,
-                "AED",
-                Utils.date(5, 1, 2016),
-                Utils.date(7, 1, 2016),
-                450,
-                150.5D));
-        instructions.add(new Instruction(
-                "bar",
-                'S',
-                0.22D,
-                "AED",
-                Utils.date(5, 1, 2016),
-                Utils.date(12, 1, 2016),
-                450,
-                150.5D));
-        instructions.add(new Instruction(
-                "bar",
-                'B',
-                0.22D,
-                "AED",
-                Utils.date(5, 1, 2016),
-                Utils.date(11, 1, 2016),
-                450,
-                150.5D));
-        instructions.add(new Instruction(
-                "bar",
-                'S',
-                0.22D,
-                "AED",
-                Utils.date(5, 1, 2016),
-                Utils.date(10, 1, 2016),
-                450,
-                150.5D));
-        instructions.add(new Instruction(
-                "bar",
-                'S',
-                0.22D,
-                "AED",
-                Utils.date(5, 1, 2016),
-                Utils.date(9, 1, 2016),
-                450,
-                150.5D));
-        instructions.add(new Instruction(
-                "bar",
-                'B',
-                0.22D,
-                "AED",
-                Utils.date(5, 1, 2016),
-                Utils.date(8, 1, 2016),
-                450,
-                150.5D));
+        instructions.add(new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('B')
+                .setAgreedFx(0.5D)
+                .setCurrency("SGP")
+                .setInstructionDate(Utils.date(1, 1, 2016))
+                .setSettlementDate(Utils.date(2, 1, 2016))
+                .setUnits(200)
+                .setPriceOerUnit(100.25D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('B')
+                .setAgreedFx(0.5D)
+                .setCurrency("SGP")
+                .setInstructionDate(Utils.date(1, 1, 2016))
+                .setSettlementDate(Utils.date(5, 1, 2016))
+                .setUnits(200)
+                .setPriceOerUnit(100.25D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('S')
+                .setAgreedFx(0.5D)
+                .setCurrency("SGP")
+                .setInstructionDate(Utils.date(1, 1, 2016))
+                .setSettlementDate(Utils.date(6, 1, 2016))
+                .setUnits(200)
+                .setPriceOerUnit(100.25D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('S')
+                .setAgreedFx(0.5D)
+                .setCurrency("SGP")
+                .setInstructionDate(Utils.date(1, 1, 2016))
+                .setSettlementDate(Utils.date(7, 1, 2016))
+                .setUnits(200)
+                .setPriceOerUnit(100.25D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('B')
+                .setAgreedFx(0.5D)
+                .setCurrency("SGP")
+                .setInstructionDate(Utils.date(1, 1, 2016))
+                .setSettlementDate(Utils.date(8, 1, 2016))
+                .setUnits(200)
+                .setPriceOerUnit(100.25D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('S')
+                .setAgreedFx(0.5D)
+                .setCurrency("SGP")
+                .setInstructionDate(Utils.date(1, 1, 2016))
+                .setSettlementDate(Utils.date(9, 1, 2016))
+                .setUnits(200)
+                .setPriceOerUnit(100.25D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('B')
+                .setAgreedFx(0.5D)
+                .setCurrency("SGP")
+                .setInstructionDate(Utils.date(1, 1, 2016))
+                .setSettlementDate(Utils.date(10, 1, 2016))
+                .setUnits(200)
+                .setPriceOerUnit(100.25D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('B')
+                .setAgreedFx(0.5D)
+                .setCurrency("SGP")
+                .setInstructionDate(Utils.date(1, 1, 2016))
+                .setSettlementDate(Utils.date(11, 1, 2016))
+                .setUnits(200)
+                .setPriceOerUnit(100.25D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('S')
+                .setAgreedFx(0.5D)
+                .setCurrency("SGP")
+                .setInstructionDate(Utils.date(1, 1, 2016))
+                .setSettlementDate(Utils.date(10, 1, 2016))
+                .setUnits(200)
+                .setPriceOerUnit(100.25D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("bar")
+                .setBuySell('S')
+                .setAgreedFx(0.22D)
+                .setCurrency("AED")
+                .setInstructionDate(Utils.date(5, 1, 2016))
+                .setSettlementDate(Utils.date(7, 1, 2016))
+                .setUnits(450)
+                .setPriceOerUnit(150.5D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("bar")
+                .setBuySell('S')
+                .setAgreedFx(0.22D)
+                .setCurrency("AED")
+                .setInstructionDate(Utils.date(5, 1, 2016))
+                .setSettlementDate(Utils.date(12, 1, 2016))
+                .setUnits(450)
+                .setPriceOerUnit(150.5D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("bar")
+                .setBuySell('B')
+                .setAgreedFx(0.22D)
+                .setCurrency("AED")
+                .setInstructionDate(Utils.date(5, 1, 2016))
+                .setSettlementDate(Utils.date(11, 1, 2016))
+                .setUnits(450)
+                .setPriceOerUnit(150.5D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("bar")
+                .setBuySell('S')
+                .setAgreedFx(0.22D)
+                .setCurrency("AED")
+                .setInstructionDate(Utils.date(5, 1, 2016))
+                .setSettlementDate(Utils.date(10, 1, 2016))
+                .setUnits(450)
+                .setPriceOerUnit(150.5D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("bar")
+                .setBuySell('S')
+                .setAgreedFx(0.22D)
+                .setCurrency("AED")
+                .setInstructionDate(Utils.date(5, 1, 2016))
+                .setSettlementDate(Utils.date(9, 1, 2016))
+                .setUnits(450)
+                .setPriceOerUnit(150.5D)
+                .createInstruction());
+        instructions.add(new InstructionBuilder()
+                .setEntity("bar")
+                .setBuySell('B')
+                .setAgreedFx(0.22D)
+                .setCurrency("AED")
+                .setInstructionDate(Utils.date(5, 1, 2016))
+                .setSettlementDate(Utils.date(8, 1, 2016))
+                .setUnits(450)
+                .setPriceOerUnit(150.5D)
+                .createInstruction());
         return instructions;
     }
 }

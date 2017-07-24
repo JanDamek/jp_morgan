@@ -1,9 +1,6 @@
 package eu.damek.jpmorgan.service;
 
-import eu.damek.jpmorgan.domain.Instruction;
-import eu.damek.jpmorgan.domain.Ranking;
-import eu.damek.jpmorgan.domain.SettledIncoming;
-import eu.damek.jpmorgan.domain.SettledOutgoing;
+import eu.damek.jpmorgan.domain.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,15 +33,18 @@ public class MarketServiceTest {
         Date settlementDate = calendar.getTime();
         calendar.set(2016, 0, 4, 0, 0, 0);
         Date nextForkingDay = calendar.getTime();
-        Instruction instruction = new Instruction(
-                "foo",
-                'B',
-                0.5,
-                "SGP",
-                instructionDate,
-                settlementDate,
-                200,
-                100.25);
+
+        Instruction instruction = new InstructionBuilder()
+                .setEntity("foo")
+                .setBuySell('B')
+                .setAgreedFx(0.5)
+                .setCurrency("SGP")
+                .setInstructionDate(instructionDate)
+                .setSettlementDate(settlementDate)
+                .setUnits(200)
+                .setPriceOerUnit(100.25)
+                .createInstruction();
+
         marketService.makeTrade(instruction);
         List<Ranking> rankings = marketService.entitiesRanking();
         List<SettledIncoming> settledIncomings = marketService.settledIncoming();
@@ -66,15 +66,18 @@ public class MarketServiceTest {
         Date settlementDate = calendar.getTime();
         calendar.set(2016, 0, 7, 0, 0, 0);
         Date nextForkingDay = calendar.getTime();
-        Instruction instruction = new Instruction(
-                "bar",
-                'S',
-                0.22,
-                "AED",
-                instructionDate,
-                settlementDate,
-                450,
-                150.5);
+
+        Instruction instruction = new InstructionBuilder()
+                .setEntity("bar")
+                .setBuySell('S')
+                .setAgreedFx(0.22)
+                .setCurrency("AED")
+                .setInstructionDate(instructionDate)
+                .setSettlementDate(settlementDate)
+                .setUnits(450)
+                .setPriceOerUnit(150.5)
+                .createInstruction();
+
         marketService.makeTrade(instruction);
         List<Ranking> rankings = marketService.entitiesRanking();
         List<SettledIncoming> settledIncomings = marketService.settledIncoming();

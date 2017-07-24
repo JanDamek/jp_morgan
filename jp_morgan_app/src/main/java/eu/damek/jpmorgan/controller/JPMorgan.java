@@ -1,11 +1,8 @@
 package eu.damek.jpmorgan.controller;
 
+import eu.damek.jpmorgan.domain.*;
 import eu.damek.jpmorgan.util.InstructionGenerator;
 import eu.damek.jpmorgan.util.Utils;
-import eu.damek.jpmorgan.domain.Instruction;
-import eu.damek.jpmorgan.domain.Ranking;
-import eu.damek.jpmorgan.domain.SettledIncoming;
-import eu.damek.jpmorgan.domain.SettledOutgoing;
 import eu.damek.jpmorgan.service.MarketService;
 
 import java.util.ArrayList;
@@ -108,15 +105,15 @@ public class JPMorgan {
             Utils.print("Price per unit:");
             double pricePerUnit = Utils.readLineDouble();
 
-            marketService.makeTrade(new Instruction(
-                    entity,
-                    buySell.charAt(0),
-                    agreedFx,
-                    currency,
-                    instructionDate,
-                    settlementDate,
-                    units,
-                    pricePerUnit));
+            marketService.makeTrade(new InstructionBuilder().setEntity(entity)
+                    .setBuySell(buySell.charAt(0))
+                    .setAgreedFx(agreedFx)
+                    .setCurrency(currency)
+                    .setInstructionDate(instructionDate)
+                    .setSettlementDate(settlementDate)
+                    .setUnits(units)
+                    .setPriceOerUnit(pricePerUnit)
+                    .createInstruction());
         } catch (Exception e) {
             Utils.printLn("Error on input: " + e.getMessage());
         }
