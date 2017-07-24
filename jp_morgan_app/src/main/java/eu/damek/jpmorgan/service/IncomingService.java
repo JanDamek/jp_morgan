@@ -42,8 +42,8 @@ class IncomingService {
      * @param amount    Double
      */
     void addAmount(Date tradeDate, double amount) {
-        AtomicReference<SettledIncoming> incoming = new AtomicReference<>(getIncoming(tradeDate));
-        incoming.get().setIncoming(incoming.get().getIncoming() + amount);
+        AtomicReference<SettledIncoming> atomicReference = new AtomicReference<>(getIncoming(tradeDate));
+        atomicReference.get().setIncoming(atomicReference.get().getIncoming() + amount);
     }
 
     /**
@@ -54,15 +54,15 @@ class IncomingService {
      * @return object of {@link SettledIncoming}
      */
     private SettledIncoming getIncoming(Date tradeDate) {
-        final AtomicReference<SettledIncoming> incoming = new AtomicReference<>(this.incoming.stream()
+        final AtomicReference<SettledIncoming> atomicReference = new AtomicReference<>(this.incoming.stream()
                 .filter(i -> filterIncomingByDate(i, tradeDate))
                 .findFirst()
                 .orElse(new SettledIncoming
                         (tradeDate)));
-        if (!this.incoming.contains(incoming.get())) {
-            this.incoming.add(incoming.get());
+        if (!this.incoming.contains(atomicReference.get())) {
+            this.incoming.add(atomicReference.get());
         }
-        return incoming.get();
+        return atomicReference.get();
     }
 
     /**

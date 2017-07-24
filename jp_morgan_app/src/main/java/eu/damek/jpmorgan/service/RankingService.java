@@ -4,6 +4,7 @@ import eu.damek.jpmorgan.domain.Ranking;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Project: jp_morgan
@@ -52,12 +53,15 @@ class RankingService {
      * @return object of {@link Ranking}
      */
     private Ranking getRanking(String entity) {
-        final Ranking ranking =
-                rankings.stream().filter(r -> rankingFilter(r, entity)).findFirst().orElse(new Ranking(entity));
-        if (!rankings.contains(ranking)) {
-            rankings.add(ranking);
+        final AtomicReference<Ranking> atomicReference =
+                new AtomicReference<>(rankings.stream()
+                        .filter(r -> rankingFilter(r, entity))
+                        .findFirst()
+                        .orElse(new Ranking(entity)));
+        if (!rankings.contains(atomicReference.get())) {
+            rankings.add(atomicReference.get());
         }
-        return ranking;
+        return atomicReference.get();
     }
 
     /**

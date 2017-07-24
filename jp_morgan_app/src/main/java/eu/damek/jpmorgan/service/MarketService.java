@@ -121,6 +121,6 @@ public class MarketService {
      * @return list of {@link SettledOutgoing}
      */
     public List<SettledOutgoing> getSettledOutgoing() {
-        return outgoingService.getSettledOutgoings();
+        return outgoingService.getOutgoings();
     }
 }

@@ -5,6 +5,7 @@ import eu.damek.jpmorgan.domain.SettledOutgoing;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Project: jp_morgan
@@ -16,13 +17,13 @@ class OutgoingService {
     /**
      * list of all outgoing trades
      */
-    private final List<SettledOutgoing> settledOutgoings;
+    private final List<SettledOutgoing> outgoings;
 
     /**
      * constructor
      */
     OutgoingService() {
-        settledOutgoings = new ArrayList<>();
+        outgoings = new ArrayList<>();
     }
 
     /**
@@ -30,8 +31,8 @@ class OutgoingService {
      *
      * @return List of {@link OutgoingService}
      */
-    List<SettledOutgoing> getSettledOutgoings() {
-        return settledOutgoings;
+    List<SettledOutgoing> getOutgoings() {
+        return outgoings;
     }
 
     /**
@@ -41,8 +42,8 @@ class OutgoingService {
      * @param amount    calculated amount in USD of trade
      */
     void addAmount(Date tradeDate, double amount) {
-        SettledOutgoing outgoing = getOutgoing(tradeDate);
-        outgoing.setOutcome(outgoing.getOutcome() + amount);
+        AtomicReference<SettledOutgoing> atomicReference = new AtomicReference<>(getOutgoing(tradeDate));
+        atomicReference.get().setOutcome(atomicReference.get().getOutcome() + amount);
     }
 
     /**
@@ -52,13 +53,14 @@ class OutgoingService {
      * @return object of {@link SettledOutgoing} for trade date
      */
     private SettledOutgoing getOutgoing(Date tradeDate) {
-        final SettledOutgoing outgoing =
-                settledOutgoings.stream().filter(o -> filterOutcomeByDate(o, tradeDate)).findFirst().orElse(new
-                        SettledOutgoing(tradeDate));
-        if (!settledOutgoings.contains(outgoing)) {
-            settledOutgoings.add(outgoing);
+        final AtomicReference<SettledOutgoing> atomicReference =
+                new AtomicReference<>(
+                        outgoings.stream().filter(o -> filterOutcomeByDate(o, tradeDate)).findFirst().orElse(new
+                                SettledOutgoing(tradeDate)));
+        if (!outgoings.contains(atomicReference.get())) {
+            outgoings.add(atomicReference.get());
         }
-        return outgoing;
+        return atomicReference.get();
     }
 
     /**

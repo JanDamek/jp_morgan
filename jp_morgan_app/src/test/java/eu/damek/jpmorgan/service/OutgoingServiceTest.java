@@ -30,7 +30,7 @@ public class OutgoingServiceTest {
         outgoingService.addAmount(new Date(2016, 1, 5), 1000);
         outgoingService.addAmount(new Date(2016, 1, 5), 1000);
         outgoingService.addAmount(new Date(2016, 1, 5), 1000);
-        final List<SettledOutgoing> incoms = outgoingService.getSettledOutgoings();
+        final List<SettledOutgoing> incoms = outgoingService.getOutgoings();
         assertEquals(incoms.size(), 1);
         assertEquals(incoms.get(0).getOutcome(), 5000, 0.001);
 
@@ -39,7 +39,7 @@ public class OutgoingServiceTest {
         outgoingService.addAmount(new Date(2016, 1, 8), 1000);
         outgoingService.addAmount(new Date(2016, 1, 9), 1000);
         outgoingService.addAmount(new Date(2016, 1, 10), 1000);
-        final List<SettledOutgoing> incoms1 = outgoingService.getSettledOutgoings();
+        final List<SettledOutgoing> incoms1 = outgoingService.getOutgoings();
         assertEquals(incoms1.size(), 6);
         assertEquals(incoms1.get(1).getOutcome(), 1000, 0.001);
         assertEquals(incoms1.get(2).getOutcome(), 1000, 0.001);
