@@ -61,7 +61,7 @@ public class MarketServiceTest {
     }
 
     @Test
-    public void makeTradeWorkOnSunday() {
+    public void makeTradeWorkOnThu() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2016, 0, 5, 0, 0, 0);
         Date instructionDate = calendar.getTime();
@@ -96,4 +96,41 @@ public class MarketServiceTest {
         assertEquals(settledIncomings.get(0).getIncoming(), 150.5 * 450 * 0.22, 0.001);
     }
 
+    @Test
+    public void makeTradeWorkOnFri() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2016, 0, 5, 0, 0, 0);
+        Date instructionDate = calendar.getTime();
+        //settlementDate is on Friday 2016.1.8 and currency is AED.
+        calendar.set(2016, 0, 8, 0, 0, 0);
+        Date settlementDate = calendar.getTime();
+        //trade date must be on Sunday 2016.1.10
+        calendar.set(2016, 0, 10, 0, 0, 0);
+        Date nextForkingDay = calendar.getTime();
+
+        Instruction instruction = new InstructionBuilder()
+                .setEntity("bar")
+                .setBuySell('S')
+                .setAgreedFx(0.22)
+                .setCurrency("AED")
+                .setInstructionDate(instructionDate)
+                .setSettlementDate(settlementDate)
+                .setUnits(450)
+                .setPricePerUnit(150.5)
+                .createInstruction();
+
+        marketService.makeTrade(instruction);
+        List<Ranking> rankings = marketService.getEntitiesRanking();
+        List<SettledIncoming> settledIncomings = marketService.getSettledIncoming();
+        List<SettledOutgoing> settledOutgoings = marketService.getSettledOutgoing();
+
+        assertEquals(settledOutgoings.size(), 0);
+
+        assertEquals(rankings.size(), 1);
+        assertEquals(rankings.get(0).ranking(), 0, 0.000001);
+
+        assertEquals(settledIncomings.size(), 1);
+        assertEquals(settledIncomings.get(0).getDate(), nextForkingDay);
+        assertEquals(settledIncomings.get(0).getIncoming(), 150.5 * 450 * 0.22, 0.001);
+    }
 }
